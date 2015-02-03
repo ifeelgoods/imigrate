@@ -87,6 +87,7 @@ You can generate a data migration as you would a schema migration:
 ### Rake Tasks
 
     $> rake -T data
+    rake db:migrate:all                  # Migrate schema migration and after data migrations (options: VERSION=x, VERBOSE=false)
     rake db:data:forward                 # Pushes the schema to the next version (specify steps w/ STEP=n)
     rake db:data:migrate                 # Migrate data migrations (options: VERSION=x, VERBOSE=false)
     rake db:data:migrate:down            # Runs the "down" for a given migration VERSION
