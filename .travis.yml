@@ -4,5 +4,5 @@ rvm:
   - 2.1
 
 script:
-  - rspec spec/
+  - bundle exec rspec spec/
 
