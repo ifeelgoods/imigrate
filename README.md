@@ -1,4 +1,4 @@
-I migrate
+I migrate [![Build Status](https://travis-ci.org/ifeelgoods/imigrate.svg?branch=master)](https://travis-ci.org/ifeelgoods/imigrate)
 ====
 
 Run Rails data migrations.
