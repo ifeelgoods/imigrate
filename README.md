@@ -53,10 +53,10 @@ table to track all the goodness.
 Data migrations can be created at the same time as schema migrations,
 or independently.
 
-Rails 4.1 and Ruby 2.0
+Compatibility
 --------------------
 
-Imigrate is Rails 4.1 and Ruby > 2.0 compatible.
+Imigrate is tested on Rails 4.1/4.2 and Ruby 1.9.3/2.0/2.1/2.2
 
 Installation
 ------------
