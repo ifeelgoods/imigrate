@@ -96,3 +96,9 @@ You can generate a data migration as you would a schema migration:
     rake db:data:rollback                # Rolls the schema back to the previous version (specify steps w/ STEP=n)
     rake db:data:version                 # Retrieves the current schema version number for data migrations
 
+
+Credits
+-------
+
+Inspired from https://github.com/ajvargo/data-migrate
+
