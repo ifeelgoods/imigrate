@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/ifeelgoods/imigrate"
   s.summary     = %q{Rake tasks to migrate data for Rails application.}
   s.description = %q{Rake tasks to migrate data for Rails application.}
+  s.license     = 'Apache License Version 2.0'
 
   s.add_development_dependency "rails", ">= 4.1.0"
   s.add_development_dependency "rspec-rails", ">= 3.1.0"
