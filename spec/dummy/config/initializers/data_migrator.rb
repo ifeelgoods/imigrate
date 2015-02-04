@@ -1,1 +1,0 @@
-Imigrate.env_prefix = ENV['DATA_MIGRATOR_ENV_PREFIX']

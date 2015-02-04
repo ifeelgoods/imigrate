@@ -125,21 +125,25 @@ describe 'rake tasks' do
     end
 
     it 'does add an user and change the schema' do
-      rake('DATA_MIGRATOR_ENV_PREFIX=staging db:migrate:all')
+      rake('DATA_MIGRATOR_ENV_PREFIX=10 db:migrate:all')
       expect(User.count).to eq(2)
       expect(get_versions).to include('20150202174939')
-      expect(get_data_versions).to include('staging_20150202183455')
+      expect(get_data_versions).to include('1020150202183455')
     end
 
     describe 'when changing env_prefix' do
       it 'contains version for both env' do
-        rake('DATA_MIGRATOR_ENV_PREFIX=staging db:data:migrate')
-        expect(get_data_versions).to include('staging_20150202183455')
-        expect(get_data_versions).to_not include('production_20150202183455')
+        rake('DATA_MIGRATOR_ENV_PREFIX=10 db:data:migrate')
+        expect(get_data_versions).to include('1020150202183455')
+        expect(get_data_versions).to_not include('2020150202183455')
         expect(User.count).to eq(2)
-        rake('DATA_MIGRATOR_ENV_PREFIX=production db:data:migrate')
-        expect(get_data_versions).to include('staging_20150202183455')
-        expect(get_data_versions).to include('production_20150202183455')
+        rake('DATA_MIGRATOR_ENV_PREFIX=20 db:data:migrate')
+        expect(get_data_versions).to include('1020150202183455')
+        expect(get_data_versions).to include('2020150202183455')
+        expect(User.count).to eq(4)
+        rake('DATA_MIGRATOR_ENV_PREFIX=20 db:data:migrate')
+        expect(get_data_versions).to include('1020150202183455')
+        expect(get_data_versions).to include('2020150202183455')
         expect(User.count).to eq(4)
       end
     end
