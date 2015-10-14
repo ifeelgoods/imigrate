@@ -11,5 +11,5 @@ module Imigrate
     @@env_prefix = number
   end
   SCHEMA_MIGRATIONS_TABLE_NAME = 'data_migrations'
-  MIGRATION_PATH = 'db/data'
+  MIGRATION_PATH = ['db/data']
 end

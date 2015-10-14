@@ -15,6 +15,21 @@ namespace :db do
       ActiveRecord::Base.schema_migrations_table_name = Imigrate::SCHEMA_MIGRATIONS_TABLE_NAME
     end
 
+    task :insert_versions => [:environment, :load_config] do
+      versions = []
+      ActiveRecord::Tasks::DatabaseTasks.migrations_paths.each do |path|
+        Dir.foreach(path) do |file|
+          # match "20091231235959_some_name.rb" and "001_some_name.rb" pattern
+          if match_data = /^(\d{3,})_(.+)\.rb$/.match(file)
+            versions << ActiveRecord::SchemaMigration.normalize_migration_number(match_data[1])
+          end
+        end
+      end
+      versions.each do |version|
+        ActiveRecord::SchemaMigration.create!(:version => version.to_s)
+      end
+    end
+
     desc 'Migrate data migrations (options: VERSION=x, VERBOSE=false)'
     task :migrate => [:environment, :load_config] do
       Rake::Task["db:migrate"].invoke

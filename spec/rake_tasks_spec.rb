@@ -71,7 +71,30 @@ describe 'rake tasks' do
     end
   end
 
-  describe 'db:migrate' do
+    describe 'db:setup' do
+      before do
+        exec_cmd('rake db:drop')
+        exec_cmd('git checkout db/schema.rb')
+        exec_cmd('rake db:setup')
+        insert_migration_test
+        exec_cmd('rake db:migrate:all')
+        exec_cmd('rake db:drop')
+      end
+
+      it 'does insert data migration version' do
+        exec_cmd('rake db:setup')
+        exec_cmd('rake db:data:insert_versions')
+        expect(get_data_versions).to include('20150202183455')
+      end
+
+      it 'does not insert schema migration version' do
+        exec_cmd('rake db:setup')
+        exec_cmd('rake db:data:insert_versions')
+        expect(get_data_versions).to_not include('20150202174939')
+      end
+    end
+
+    describe 'db:migrate' do
     before do
       ActiveRecord::Base.establish_connection
       DatabaseCleaner.clean
